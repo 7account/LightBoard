@@ -9,14 +9,18 @@ public class LightBoard {
         }
     }
 
+    public LightBoard(boolean[][] something) {
+        lights = something;
+    }
+
     public boolean evaluateLight(int row, int col) {
         int numOnInCol = 0;
         for (int r = 0; r < lights.length; r++) {
-            if (lights[r][col]) numOnInCol++;
-        if (lights[row][col] && (numOnInCol % 2 == 0)) return false;
-        else if (numOnInCol % 3 == 0) return false;
-        if (lights[row][col] == true) return true;
-        else return false;
+            if (lights[r][col] == true) numOnInCol++; 
         }
+        if ((lights[row][col] == true) && (numOnInCol % 2 == 0)) return false;
+        if ((lights[row][col] == false) && (numOnInCol % 3 == 0)) return true;
+        if (lights[row][col] == true) return true;
+        return false;
     }
 }
